@@ -1,26 +1,47 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import HomeView from "../views/HomeView.vue";
-
-const routes: Array<RouteRecordRaw> = [
+export const routes: Array<RouteRecordRaw> = [
   {
-    path: "/",
-    name: "home",
-    component: HomeView,
+    path: '/',
+    name: 'home',
+    component: HomePage
   },
   {
-    path: "/about",
-    name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+    path: '/bulkwords/:color',
+    name: 'bulkwords',
+    component: BulkWordsPage
   },
-];
+  {
+    path: '/crossword/:color',
+    name: 'crossword',
+    component: CrosswordPage
+  },
+  {
+    path: '/exercises/:color',
+    name: 'exercises',
+    component: ExercisesPage
+  },
+  {
+    path: '/keyboard/:color',
+    name: 'keyboard',
+    component: KeyboardPage
+  },
+  {
+    path: '/password/:color',
+    name: 'password',
+    component: PasswordPage
+  }
+]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes,
-});
+  routes
+})
 
-export default router;
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import HomePage from '@/views/HomePage.vue'
+import CrosswordPage from '@/views/CrosswordPage.vue'
+import ExercisesPage from '@/views/ExercisesPage.vue'
+import BulkWordsPage from '@/views/BulkWordsPage.vue'
+import KeyboardPage from '@/views/KeyboardPage.vue'
+import PasswordPage from '@/views/PasswordPage.vue'
+
+export default router
