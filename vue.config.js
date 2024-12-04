@@ -1,11 +1,11 @@
 const { defineConfig } = require('@vue/cli-service')
-module.exports = defineConfig({
+/*module.exports = defineConfig({
   transpileDependencies: true
-})/*
+})*/
 module.exports = {
   pwa: {
     name: 'Escape Room',
-    short_name: 'escape room',
+    short_name: 'חדר בריחה',
     themeColor: 'white',
     msTileColor: '#000000',
     manifestOptions: {
@@ -15,4 +15,3 @@ module.exports = {
     },
   },
 };
-*/
