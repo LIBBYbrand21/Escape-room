@@ -1,9 +1,11 @@
 <template>
   <nav class="ma-3">
-    <a @click="dialog = true">להכנס בשעריך</a>
+    <a @click="$router.push({ name: 'bulkwords', params: { color: props.color } })">להכנס בשעריך</a>
     |
-    <a @click="dialog = true">סכום שווה</a> |
-    <a @click="dialog = true">להרחיב גבוליך</a>
+    <a @click="$router.push({ name: 'exercises', params: { color: props.color } })">סכום שווה</a> |
+    <a @click="$router.push({ name: 'crossword', params: { color: props.color } })">
+      להרחיב גבוליך
+    </a>
   </nav>
   <v-dialog v-model="dialog" max-width="200">
     <v-card style="text-align: center">
@@ -38,11 +40,9 @@ nav {
   }
 }
 /*<nav class="ma-3">
-  <a @click="$router.push({ name: 'bulkwords', params: { color: props.color } })">להכנס בשעריך</a>
-  |
-  <a @click="$router.push({ name: 'exercises', params: { color: props.color } })">סכום שווה</a> |
-  <a @click="$router.push({ name: 'crossword', params: { color: props.color } })">
-    להרחיב גבוליך
-  </a>
-</nav>*/
+    <a @click="dialog = true">להכנס בשעריך</a>
+    |
+    <a @click="dialog = true">סכום שווה</a> |
+    <a @click="dialog = true">להרחיב גבוליך</a>
+  </nav>*/
 </style>
