@@ -3,6 +3,7 @@ const { defineConfig } = require('@vue/cli-service')
   transpileDependencies: true
 })*/
 module.exports = {
+  /*publicPath: './',*/
   pwa: {
     name: 'Escape Room',
     short_name: 'חדר בריחה',
@@ -11,7 +12,7 @@ module.exports = {
     manifestOptions: {
       start_url: '.',
       display: 'fullscreen',
-      background_color: '#FFFFFF',
-    },
-  },
-};
+      background_color: '#FFFFFF'
+    }
+  }
+}

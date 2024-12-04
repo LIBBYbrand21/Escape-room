@@ -67,6 +67,17 @@
         </div>
       </div>
     </div>
+    <canvas
+      class="d-flex position-fixed"
+      id="canvas"
+      v-on:mousedown="handleMouseDown"
+      v-on:mouseup="handleMouseUp"
+      v-on:mousemove="handleMouseMove"
+      width="1400"
+      height="350"
+      style="left: 0; z-index: 1"
+    >
+    </canvas>
   </div>
   <v-dialog v-model="dialog" max-width="200">
     <v-card style="text-align: center">
@@ -84,7 +95,7 @@
 <script setup>
 import HintComp from '@/components/HintComp.vue'
 import NavBar from '@/components/NavBar.vue'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import Gate1Icon from '@/assets/icons/Gate1Icon.vue'
 import BucketIcon from '@/assets/icons/BucketIcon.vue'
 import LogIcon from '@/assets/icons/LogIcon.vue'
@@ -129,7 +140,85 @@ const check = () => {
   return true
 }
 
+const mouse = ref({
+  current: { x: 0, y: 0 },
+  previous: { x: 0, y: 0 },
+  down: false
+})
+
 const message = 'סכום שווה'
+
+const currentMouse = () => {
+  const c = document.getElementById('canvas')
+  const rect = c.getBoundingClientRect()
+  return {
+    x: mouse.value.current.x - rect.left,
+    y: mouse.value.current.y - rect.top
+  }
+}
+
+const draw = () => {
+  if (mouse.value.down) {
+    const c = document.getElementById('canvas')
+    const ctx = c.getContext('2d')
+    ctx.clearRect(0, 0, 1400, 350) // עדכון גובה הקנבס
+    ctx.lineTo(currentMouse().x, currentMouse().y)
+    ctx.strokeStyle = 'black'
+    ctx.lineWidth = 2
+    ctx.stroke()
+  }
+}
+
+const handleMouseDown = (event) => {
+  mouse.value.down = true
+  mouse.value.current = { x: event.pageX, y: event.pageY }
+
+  const c = document.getElementById('canvas')
+  const ctx = c.getContext('2d')
+  ctx.moveTo(currentMouse().x, currentMouse().y)
+}
+
+const handleMouseUp = () => {
+  mouse.value.down = false
+}
+
+const handleMouseMove = (event) => {
+  mouse.value.current = { x: event.pageX, y: event.pageY }
+  draw()
+}
+
+onMounted(() => {
+  const c = document.getElementById('canvas')
+  if (c) {
+    const ctx = c.getContext('2d')
+    ctx.translate(0.5, 0.5)
+    ctx.imageSmoothingEnabled = false
+    c.addEventListener('mousedown', handleMouseDown)
+    c.addEventListener('mouseup', handleMouseUp)
+    c.addEventListener('mousemove', handleMouseMove)
+    c.addEventListener('touchstart', handleTouchStart)
+    c.addEventListener('touchend', handleTouchEnd)
+    c.addEventListener('touchmove', handleTouchMove)
+  }
+})
+const handleTouchStart = (event) => {
+  event.preventDefault() // למנוע גלילה
+  mouse.value.down = true
+  mouse.value.current = { x: event.touches[0].pageX, y: event.touches[0].pageY }
+  const c = document.getElementById('canvas')
+  const ctx = c.getContext('2d')
+  ctx.moveTo(currentMouse().x, currentMouse().y)
+}
+
+const handleTouchEnd = () => {
+  mouse.value.down = false
+}
+
+const handleTouchMove = (event) => {
+  event.preventDefault() // למנוע גלילה
+  mouse.value.current = { x: event.touches[0].pageX, y: event.touches[0].pageY }
+  draw()
+}
 </script>
 <style>
 canvas {
