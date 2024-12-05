@@ -1,5 +1,6 @@
 # escaperoom
-
+[To view the site, click here.
+]([url](https://escape-room-c7fc1.web.app/))
 ## Project setup
 ```
 npm install
