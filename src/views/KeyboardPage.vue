@@ -80,7 +80,7 @@
       <v-card-title class="headline align-items-center ma-5">
         <v-icon :icon="UnlockedIcon" />
       </v-card-title>
-      <v-card-text>{{ 'כל הכבוד!!  עוד חמש שניות תעברו לשלב הבא' }}</v-card-text>
+      <v-card-text>{{ 'כל הכבוד!! עוד חמש שניות תעברו לשלב הבא' }}</v-card-text>
       <v-card-actions>
         <v-btn color="primary" @click="dialog = false">סגירה</v-btn>
       </v-card-actions>
@@ -123,17 +123,21 @@ li {
 span {
   font-size: 20px;
   position: absolute;
-  bottom: -0.6em; /* מיקום אנכי למעלה */
-  right: 0.1%; /* מיקום אופקי לימין */
+  bottom: -0.6em;
+  /* מיקום אנכי למעלה */
+  right: 0.1%;
+  /* מיקום אופקי לימין */
 }
 
 li:active {
-  transform: scale(0.8); /* קטינות הכפתור בלחיצה */
+  transform: scale(0.8);
+  /* קטינות הכפתור בלחיצה */
   background-color: rgb(148, 147, 147);
 }
 
 li:focus {
-  transform: scale(1); /* הגדלת הכפתור בחזרה */
+  transform: scale(1);
+  /* הגדלת הכפתור בחזרה */
 }
 </style>
 
@@ -144,6 +148,7 @@ import router from '@/router'
 import UnlockedIcon from '@/assets/icons/UnlockedIcon.vue'
 
 const dialog = ref(false)
+const isComplited = ref(false)
 const keyArray = ref([''])
 const keys = ['k', 'j', 'h', 'g', 'f', 'd']
 
@@ -157,6 +162,7 @@ const addToIdArray = (id: string) => {
   }
   if (keys.length === keyArray.value.length) {
     keyArray.value = []
+    isComplited.value = true
     dialog.value = true
     //כאן צריך לשלוח אות למסך שיידע להציג תמונה מתאימה
     setTimeout(() => router.push({ name: 'home' }), 5000)

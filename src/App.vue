@@ -5,6 +5,10 @@
   </div>
 </template>
 
+<script setup lang="ts">
+console.log(import.meta)
+</script>
+
 <style scoped>
 #app {
   font-family: sans-serif;

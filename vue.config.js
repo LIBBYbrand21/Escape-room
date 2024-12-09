@@ -3,7 +3,7 @@ const { defineConfig } = require('@vue/cli-service')
   transpileDependencies: true
 })*/
 module.exports = {
-  /*publicPath: './',*/
+ /* publicPath: './',*/
   pwa: {
     name: 'Escape Room',
     short_name: 'חדר בריחה',
