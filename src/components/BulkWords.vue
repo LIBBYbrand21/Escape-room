@@ -7,8 +7,10 @@
         :disabled="isCompleted"
         @click="isCompleted ? null : buttonClicked(rowIndex, colIndex)"
         :style="{
-          backgroundColor: isActiveButton(`${rowIndex}-${colIndex}`) ? '#25201f' : '#e0d2ad',
-          color: isActiveButton(`${rowIndex}-${colIndex}`) ? '#e0d2ad' : '#25201f'
+          backgroundColor: isActiveButton(`${rowIndex}-${colIndex}`)
+            ? colors[props.color]
+            : '#e0d2ad'
+          //color: isActiveButton(`${rowIndex}-${colIndex}`) ? '#e0d2ad' : '#25201f'
         }"
       >
         {{ letter }}
@@ -81,6 +83,7 @@ const check = () => {
 const isActiveButton = (buttonKey) => {
   return activeButtons.value.some((btn) => btn === buttonKey)
 }
+const colors = ['#cd3916', 'orange', 'yellow', '#519381', 'green']
 </script>
 
 <style>

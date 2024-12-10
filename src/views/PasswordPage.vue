@@ -1,7 +1,9 @@
 <template>
+  <div :style="{ height: '15px', backgroundColor: colors[route.params.color] }"></div>
   <HintComp />
   <v-responsive class="mx-auto" max-width="344">
     <br /><br /><br /><br /><br /><br />
+    <v-icon :icon="YeledPasswordIcon" class="position-fixed" style="left: 30%; bottom: 60%" />
     <v-form v-model="form" @submit.prevent="onSubmit">
       <v-text-field
         v-model="password"
@@ -15,7 +17,7 @@
       <v-btn
         :disabled="!form"
         :loading="loading"
-        color="pink"
+        color="#cd3916"
         size="large"
         type="submit"
         variant="elevated"
@@ -43,8 +45,10 @@ import { ref } from 'vue'
 import router from '@/router'
 import { useRoute } from 'vue-router'
 import LockIcon from '@/assets/icons/LockIcon.vue'
+import YeledPasswordIcon from '@/assets/icons/yeledPasswordIcon.vue'
 
 const route = useRoute()
+const colors = ['#cd3916', 'orange', 'yellow', '#519381', 'green']
 
 const form = ref(false)
 const password = ref('')

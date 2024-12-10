@@ -59,7 +59,7 @@
       <v-card-title class="headline align-items-center ma-5">
         <v-icon :icon="UnlockedIcon" />
       </v-card-title>
-      <v-card-text>{{ 'כל הכבוד!!  עוד חמש שניות תעברו לשלב הבא' }}</v-card-text>
+      <v-card-text>{{ 'התקדמתם שלב' }}</v-card-text>
       <v-card-actions>
         <v-btn color="primary" text @click="dialog = false">סגירה</v-btn>
       </v-card-actions>

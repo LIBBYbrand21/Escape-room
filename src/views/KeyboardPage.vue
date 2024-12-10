@@ -1,4 +1,5 @@
 <template>
+  <div :style="{ height: '15px', backgroundColor: colors[Number(route.params.color)] }"></div>
   <HintComp />
   <div class="keyboard">
     <ul class="row row-0">
@@ -88,6 +89,55 @@
   </v-dialog>
 </template>
 
+<script setup lang="ts">
+import HintComp from '@/components/HintComp.vue'
+import { ref } from 'vue'
+import router from '@/router'
+import { useRoute } from 'vue-router'
+import UnlockedIcon from '@/assets/icons/UnlockedIcon.vue'
+/*import { getFunctions, httpsCallable } from 'firebase/functions'
+
+const functions = getFunctions()
+const triggerEvent = httpsCallable(functions, 'triggerEvent')*/
+const route = useRoute()
+
+const dialog = ref(false)
+const isComplited = ref(false)
+const keyArray = ref([''])
+const keys = ['k', 'j', 'h', 'g', 'f', 'd']
+const colors = ['#cd3916', 'orange', 'yellow', '#519381', 'green']
+
+const addToIdArray = (id: string) => {
+  if (keyArray.value[0] === '' && keyArray.value.length === 1) {
+    keyArray.value = []
+  }
+  keyArray.value.push(id)
+  for (let i = 0; i < keys.length && i < keyArray.value.length; i++) {
+    if (keys[i] !== keyArray.value[i]) {
+      keyArray.value = []
+      return false
+    }
+  }
+  if (keys.length === keyArray.value.length) {
+    keyArray.value = []
+    isComplited.value = true
+    dialog.value = true
+
+    /*triggerEvent({ message: 'Custom event triggered!' })
+      .then((result) => {
+        console.log(result.data.message)
+      })
+      .catch((error) => {
+        console.error('Error triggering event:', error)
+      })*/
+
+    //כאן צריך לשלוח אות למסך שיידע להציג תמונה מתאימה
+    setTimeout(() => router.push({ name: 'home' }), 5000)
+    return true
+  }
+}
+</script>
+
 <style scoped>
 .keyboard {
   font-weight: 500;
@@ -140,33 +190,3 @@ li:focus {
   /* הגדלת הכפתור בחזרה */
 }
 </style>
-
-<script setup lang="ts">
-import HintComp from '@/components/HintComp.vue'
-import { ref } from 'vue'
-import router from '@/router'
-import UnlockedIcon from '@/assets/icons/UnlockedIcon.vue'
-
-const dialog = ref(false)
-const isComplited = ref(false)
-const keyArray = ref([''])
-const keys = ['k', 'j', 'h', 'g', 'f', 'd']
-
-const addToIdArray = (id: string) => {
-  keyArray.value.push(id)
-  for (let i = 0; i < keys.length && i < keyArray.value.length; i++) {
-    if (keys[i] !== keyArray.value[i]) {
-      keyArray.value = []
-      return false
-    }
-  }
-  if (keys.length === keyArray.value.length) {
-    keyArray.value = []
-    isComplited.value = true
-    dialog.value = true
-    //כאן צריך לשלוח אות למסך שיידע להציג תמונה מתאימה
-    setTimeout(() => router.push({ name: 'home' }), 5000)
-    return true
-  }
-}
-</script>

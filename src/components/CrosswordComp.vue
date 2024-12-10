@@ -428,7 +428,7 @@
   grid-row: 6 / 6;
   grid-column: 1 / 9;
   z-index: 1000;
-  color: blue;
+  color: #519381;
 }
 
 /*מאה שערים*/
@@ -436,7 +436,7 @@
   grid-row: 2 / 2;
   grid-column: 10 / 18;
   z-index: 1000;
-  color: blue;
+  color: #519381;
 }
 
 /*סנהדריה*/
@@ -475,6 +475,7 @@ input {
   width: 30px;
   height: 30px;
   text-align: center;
+  color: #cd3916;
 }
 
 .cell {

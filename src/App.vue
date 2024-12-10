@@ -1,3 +1,4 @@
+import { shallowMount } from '@vue/test-utils';
 <template>
   <div id="app">
     <router-view />
@@ -6,12 +7,13 @@
 </template>
 
 <script setup lang="ts">
-console.log(import.meta)
+//console.log(import.meta)
 </script>
 
 <style scoped>
 #app {
-  font-family: sans-serif;
+  font-family: 'Roboto';
+  font-weight: bold;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
