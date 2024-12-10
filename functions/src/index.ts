@@ -1,7 +1,7 @@
 // Start writing functions
 // https://firebase.google.com/docs/functions/typescript
-import * as functions from 'firebase-functions/v2';
-import * as admin from 'firebase-admin';
+//import * as functions from 'firebase-functions/v2';
+//import * as admin from 'firebase-admin';
 import {onRequest} from "firebase-functions/v2/https";
 import * as logger from "firebase-functions/logger";
 
@@ -10,7 +10,7 @@ export const helloWorld = onRequest((request, response) => {
   response.send("Hello from Firebase!");
 });
 
-admin.initializeApp();
+/*admin.initializeApp();
 interface TriggerEventRequest {
   message: string;
 }
@@ -29,4 +29,4 @@ export const triggerEvent = functions.https.onCall((data: any, context) => {
 
   // החזרת תשובה ללקוח
   return { success: true, message: 'Event processed' };
-});
+});*/
