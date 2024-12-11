@@ -90,6 +90,7 @@ const colors = ['#cd3916', 'orange', 'yellow', '#519381', 'green']
 .table-container {
   width: 80%;
   margin: 0 auto;
+  z-index: 1;
 }
 
 td {

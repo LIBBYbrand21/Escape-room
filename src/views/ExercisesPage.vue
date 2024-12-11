@@ -97,20 +97,20 @@ import HintComp from '@/components/HintComp.vue'
 import NavBar from '@/components/NavBar.vue'
 import { ref, onMounted } from 'vue'
 import Gate1Icon from '@/assets/icons/Gate1Icon.vue'
-import BucketIcon from '@/assets/icons/BucketIcon.vue'
-import LogIcon from '@/assets/icons/LogIcon.vue'
 import WoodIcon from '@/assets/icons/woodIcon.vue'
 import PavingIcon from '@/assets/icons/PavingIcon.vue'
-import GateIcon from '@/assets/icons/GateIcon.vue'
 import OldIcon from '@/assets/icons/OldIcon.vue'
 import exercisesArrays from '@/assets/config/exercisesArrays.json'
 import { useRoute } from 'vue-router'
 import UnlockedIcon from '@/assets/icons/UnlockedIcon.vue'
 import router from '@/router'
+import HouseIcon from '@/assets/icons/HouseIcon.vue'
+import WhaterIcon from '@/assets/icons/WhaterIcon.vue'
+import MoneyIcon from '@/assets/icons/MoneyIcon.vue'
 
 const route = useRoute()
 const color = ref(route.params.color)
-const icons = [Gate1Icon, BucketIcon, LogIcon, WoodIcon, PavingIcon, GateIcon, OldIcon]
+const icons = [Gate1Icon, MoneyIcon, WhaterIcon, WoodIcon, PavingIcon, HouseIcon, OldIcon]
 const numbersIcons = exercisesArrays.icons[color.value]
 const symbols = exercisesArrays.symbols[color.value]
 let symbolIdx = 0

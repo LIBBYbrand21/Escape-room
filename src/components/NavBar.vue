@@ -34,6 +34,7 @@ const colors = ['#cd3916', 'orange', 'yellow', '#519381', 'green']
 
 <style lang="scss">
 nav {
+  z-index: 1;
   a {
     font-weight: bold;
     color: #5e5c1f;

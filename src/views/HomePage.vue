@@ -1,20 +1,18 @@
 <template>
   <div :style="{ height: '15px', backgroundColor: '#dda925' }"></div>
-  <div class="mt-10" style="color: #519381; font-weight: bold">
-    <v-icon :icon="YeledIcon" class="position-fixed" style="right: 30%; bottom: 50%" />
-    <br /><br /><br />
-    <p>בחרו רמה</p>
+  <v-icon :icon="YeledIcon" class="position-fixed" style="right: 20%; bottom: 50%" />
+  <div style="flex: 1">
+    <h1>בחרו רמה</h1>
     <v-sheet class="d-flex justify-center align-center" style="background-color: transparent">
-      <v-chip-group v-model="selectedLevel" variant="flat" mandatory>
-        <v-chip color="#cd3916" value="B">ב</v-chip>
-        <v-chip color="#cd3916" value="A">א</v-chip>
+      <v-chip-group v-model="selectedLevel" mandatory>
+        <v-chip color="#cd3916" value="B">רמה ב</v-chip>
+        <v-chip color="#cd3916" value="A">רמה א</v-chip>
       </v-chip-group>
     </v-sheet>
-    <br /><br /><br />
     <div v-if="selectedLevel">
-      <p>בחרו צבע</p>
+      <h1>בחרו צבע</h1>
       <v-sheet class="d-flex justify-center align-center" style="background-color: transparent">
-        <v-chip-group v-model="selectedColor" variant="flat" mandatory>
+        <v-chip-group v-model="selectedColor">
           <v-chip color="#cd3916" value="0">אדום</v-chip>
           <v-chip color="orange" value="1">כתום</v-chip>
           <v-chip color="yellow" value="2">צהוב</v-chip>
@@ -23,8 +21,9 @@
         </v-chip-group>
       </v-sheet>
     </div>
-    <br /><br /><br />
-    <v-btn :disabled="!selectedColor" @click="startGo">ליציאה מהחומות</v-btn>
+    <v-btn class="mt-10" style="width: fit-content" v-if="selectedColor" @click="startGo">
+      ליציאה מהחומות
+    </v-btn>
   </div>
 </template>
 
@@ -41,3 +40,14 @@ const startGo = () => {
   else router.push({ name: 'password', params: { color: selectedColor.value } })
 }
 </script>
+
+<style>
+h1 {
+  font-weight: bold;
+  white-space: nowrap;
+  color: #519381;
+  font-size: 2em;
+  text-align: center;
+  text-shadow: 0 1px 3px #cd3916;
+}
+</style>

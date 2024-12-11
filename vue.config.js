@@ -14,5 +14,13 @@ module.exports = {
       display: 'fullscreen',
       background_color: '#FFFFFF'
     }
-  }
+  },
+  devServer: {
+    proxy: {
+      '/api': {
+        target: 'https://us-central1-escape-room-c7fc1.cloudfunctions.net',
+        changeOrigin: true,
+      },
+    },
+  },
 }

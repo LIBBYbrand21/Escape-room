@@ -68,7 +68,7 @@
       <li id="fn" @click="addToIdArray('fn')">Fn</li>
       <li id="win" @click="addToIdArray('win')">Win</li>
       <li id="alt" @click="addToIdArray('alt')">Alt</li>
-      <li id="space" style="width: 21em" @click="addToIdArray('space')"></li>
+      <li id="space" style="width: 20.5em" @click="addToIdArray('space')"></li>
       <li id="alt" @click="addToIdArray('alt')">Alt</li>
       <li id="ctrl" @click="addToIdArray('ctrl')">Ctrl</li>
       <li @click="addToIdArray('<-')">{{ '<=' }}</li>
@@ -95,17 +95,21 @@ import { ref } from 'vue'
 import router from '@/router'
 import { useRoute } from 'vue-router'
 import UnlockedIcon from '@/assets/icons/UnlockedIcon.vue'
-/*import { getFunctions, httpsCallable } from 'firebase/functions'
+import { firebaseApp } from '@/firebase/firebase.config'
+import { getFunctions, httpsCallable } from 'firebase/functions'
 
-const functions = getFunctions()
-const triggerEvent = httpsCallable(functions, 'triggerEvent')*/
+const functions = getFunctions(firebaseApp)
+const triggerEvent = httpsCallable(functions, 'triggerEvent')
+
 const route = useRoute()
-
 const dialog = ref(false)
 const isComplited = ref(false)
 const keyArray = ref([''])
 const keys = ['k', 'j', 'h', 'g', 'f', 'd']
 const colors = ['#cd3916', 'orange', 'yellow', '#519381', 'green']
+const requestData = {
+  message: 'Hello, this is a test message!'
+}
 
 const addToIdArray = (id: string) => {
   if (keyArray.value[0] === '' && keyArray.value.length === 1) {
@@ -122,15 +126,17 @@ const addToIdArray = (id: string) => {
     keyArray.value = []
     isComplited.value = true
     dialog.value = true
-
-    /*triggerEvent({ message: 'Custom event triggered!' })
+    /*triggerEvent(requestData)
       .then((result) => {
-        console.log(result.data.message)
+        // התגובה מהשרת
+        const data = result.data
+        console.log(data) // true
+        console.log(data) // "Event processed"
       })
       .catch((error) => {
-        console.error('Error triggering event:', error)
+        // טיפול בשגיאות
+        console.error('Error calling function:', error.message)
       })*/
-
     //כאן צריך לשלוח אות למסך שיידע להציג תמונה מתאימה
     setTimeout(() => router.push({ name: 'home' }), 5000)
     return true
@@ -168,6 +174,7 @@ li {
   position: relative;
   background-color: white;
   border: 2px solid rgb(112, 111, 111);
+  cursor: pointer;
 }
 
 span {
