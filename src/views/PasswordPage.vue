@@ -1,10 +1,9 @@
 <template>
-  <div :style="{ height: '15px', backgroundColor: colors[route.params.color] }"></div>
   <HintComp />
-  <v-responsive class="mx-auto" max-width="344">
+  <v-icon :icon="YeledPasswordIcon" class="position-absolute" style="left: 170px; top: 55%" />
+  <v-responsive class="mx-auto align-center">
     <br /><br /><br /><br /><br /><br />
-    <v-icon :icon="YeledPasswordIcon" class="position-fixed" style="left: 30%; bottom: 60%" />
-    <v-form v-model="form" @submit.prevent="onSubmit">
+    <v-form v-model="form" @submit.prevent="onSubmit" class="d-flex flex-column align-center">
       <v-text-field
         v-model="password"
         :readonly="loading"
@@ -12,6 +11,7 @@
         maxlength="4"
         clearable
         type="password"
+        style="width: 100px"
       ></v-text-field>
       <br />
       <v-btn

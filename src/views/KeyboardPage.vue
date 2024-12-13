@@ -1,5 +1,4 @@
 <template>
-  <div :style="{ height: '15px', backgroundColor: colors[Number(route.params.color)] }"></div>
   <HintComp />
   <div class="keyboard">
     <ul class="row row-0">
@@ -149,10 +148,9 @@ const addToIdArray = (id: string) => {
   font-weight: 500;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   align-items: center;
-  height: 100vh;
   display: flex;
   flex-direction: column;
-  margin-top: 10%;
+  margin-top: 50px;
 }
 
 .row {

@@ -9,8 +9,7 @@
         :style="{
           backgroundColor: isActiveButton(`${rowIndex}-${colIndex}`)
             ? colors[props.color]
-            : '#e0d2ad'
-          //color: isActiveButton(`${rowIndex}-${colIndex}`) ? '#e0d2ad' : '#25201f'
+            : '#fdfdb6'
         }"
       >
         {{ letter }}
@@ -18,7 +17,7 @@
     </tr>
   </v-table>
   <div>
-    <p v-for="(word, wIndex) in words" :key="wIndex" class="d-inline-block ma-7">
+    <p v-for="(word, wIndex) in words" :key="wIndex" class="d-inline-block mr-5 mt-5">
       {{ word }}
     </p>
   </div>
@@ -91,11 +90,12 @@ const colors = ['#cd3916', 'orange', 'yellow', '#519381', 'green']
   width: 80%;
   margin: 0 auto;
   z-index: 1;
+  position: relative;
 }
 
 td {
-  border: 1px solid #25201f;
-  width: 1%;
-  height: 1%;
+  border: 1px solid #413201;
+  width: 15px;
+  height: 15px;
 }
 </style>

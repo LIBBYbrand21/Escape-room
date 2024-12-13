@@ -1,18 +1,17 @@
 <template>
-  <div :style="{ height: '15px', backgroundColor: '#dda925' }"></div>
-  <v-icon :icon="YeledIcon" class="position-fixed" style="right: 20%; bottom: 50%" />
-  <div style="flex: 1">
-    <h1>בחרו רמה</h1>
+  <v-icon :icon="YeledIcon" class="position-absolute" style="right: 150px; top: 60%" />
+  <div>
+    <h1 class="ma-5 letters">בחרו רמה</h1>
     <v-sheet class="d-flex justify-center align-center" style="background-color: transparent">
-      <v-chip-group v-model="selectedLevel" mandatory>
+      <v-chip-group v-model="selectedLevel" variant="elevated">
         <v-chip color="#cd3916" value="B">רמה ב</v-chip>
         <v-chip color="#cd3916" value="A">רמה א</v-chip>
       </v-chip-group>
     </v-sheet>
     <div v-if="selectedLevel">
-      <h1>בחרו צבע</h1>
+      <h1 class="ma-5 letters">בחרו קבוצה</h1>
       <v-sheet class="d-flex justify-center align-center" style="background-color: transparent">
-        <v-chip-group v-model="selectedColor">
+        <v-chip-group v-model="selectedColor" variant="flat">
           <v-chip color="#cd3916" value="0">אדום</v-chip>
           <v-chip color="orange" value="1">כתום</v-chip>
           <v-chip color="yellow" value="2">צהוב</v-chip>
@@ -21,7 +20,12 @@
         </v-chip-group>
       </v-sheet>
     </div>
-    <v-btn class="mt-10" style="width: fit-content" v-if="selectedColor" @click="startGo">
+    <v-btn
+      class="btn ma-15 rounded-xl elavation-24"
+      style="width: fit-content"
+      v-if="selectedColor"
+      @click="startGo"
+    >
       ליציאה מהחומות
     </v-btn>
   </div>
@@ -43,11 +47,84 @@ const startGo = () => {
 
 <style>
 h1 {
-  font-weight: bold;
-  white-space: nowrap;
   color: #519381;
   font-size: 2em;
-  text-align: center;
-  text-shadow: 0 1px 3px #cd3916;
+}
+@import url(https://fonts.googleapis.com/css?family=Fjalla+One);
+.title-text h1.letters {
+  font-size: 10em;
+  font-weight: bold;
+}
+
+.letters {
+  text-shadow: 2px 2px 6px #511a0b;
+  animation: color-changer 8s infinite;
+  transition: color-changer ease-in-out;
+}
+
+@keyframes color-changer {
+  33% {
+    color: #dda925;
+  }
+  /* #EE0BF5 cctv*/
+  66% {
+    color: #cd3916;
+  }
+  /* #00CCFF marine */
+  100% {
+    color: #519381;
+  }
+  /* #66F50B radio */
+}
+
+.btn {
+  text-shadow: 2px 2px 6px #cd3916;
+  animation: bg-color-changer 8s infinite;
+  transition: bg-color-changer ease-in-out;
+}
+
+@-webkit-keyframes color-changer {
+  33% {
+    color: #dda925;
+  }
+  /* #EE0BF5 cctv*/
+  66% {
+    color: #cd3916;
+  }
+  /* #00CCFF marine */
+  100% {
+    color: #519381;
+  }
+  /* #66F50B radio */
+}
+
+@keyframes bg-color-changer {
+  33% {
+    background-color: #dda925;
+  }
+  /* #EE0BF5 cctv*/
+  66% {
+    background-color: #cd3916;
+  }
+  /* #00CCFF marine */
+  100% {
+    background-color: #519381;
+  }
+  /* #66F50B radio */
+}
+
+@-webkit-keyframes bg-color-changer {
+  33% {
+    background-color: #dda925;
+  }
+  /* #EE0BF5 cctv*/
+  66% {
+    background-color: #cd3916;
+  }
+  /* #00CCFF marine */
+  100% {
+    background-color: #519381;
+  }
+  /* #66F50B radio */
 }
 </style>

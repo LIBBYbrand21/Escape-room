@@ -1,6 +1,8 @@
 <template>
   <HintComp :msg="message" />
   <NavBar />
+  <v-icon :icon="EraserIcon" @click="isDrawing = false" />
+  <v-icon :icon="PencilIcon" @click="isDrawing = true" />
   <div style="display: flex; justify-content: center">
     <div style="position: relative; z-index: 0; text-align: left">
       <div class="ma-3">
@@ -37,13 +39,13 @@
       <div class="ma-1">
         <v-icon :icon="icons[0]" />+<v-icon :icon="icons[2]" />+<v-icon :icon="icons[3]" /> = 63
       </div>
-      <div class="mt-6" style="align-items: center">
+      <div class="mt-4" style="align-items: center">
         <div v-for="(iconIndex, index) in numbersIcons" :key="index" class="align-items-center">
           <div v-if="iconIndex && iconIndex.length > 0" class="d-flex">
             <template v-for="(icon, iconIdx) in iconIndex" :key="iconIdx">
               <v-icon :icon="icons[icon]" />
               <span v-if="iconIdx < iconIndex.length - 1">
-                {{ symbols[symbolIdx++] }}
+                {{ getSymbol() }}
               </span>
             </template>
             <span>=</span>
@@ -107,19 +109,26 @@ import router from '@/router'
 import HouseIcon from '@/assets/icons/HouseIcon.vue'
 import WhaterIcon from '@/assets/icons/WhaterIcon.vue'
 import MoneyIcon from '@/assets/icons/MoneyIcon.vue'
+import PencilIcon from '@/assets/icons/PencilIcon.vue'
+import EraserIcon from '@/assets/icons/EraserIcon.vue'
 
 const route = useRoute()
 const color = ref(route.params.color)
 const icons = [Gate1Icon, MoneyIcon, WhaterIcon, WoodIcon, PavingIcon, HouseIcon, OldIcon]
 const numbersIcons = exercisesArrays.icons[color.value]
 const symbols = exercisesArrays.symbols[color.value]
-let symbolIdx = 0
+const symbolIdx = ref(0)
 const numInput = ref(Array(numbersIcons.length).fill('')) // מערך למספרים
 const letterInput = ref(Array(numbersIcons.length).fill('')) // מערך לאותיות
 const nums = exercisesArrays.numInput[color.value]
 const letters = exercisesArrays.lettersInput[color.value]
 const isCompleted = ref(false)
 const dialog = ref(false)
+const isDrawing = ref(false)
+
+const getSymbol = () => {
+  return symbols[symbolIdx.value]
+}
 
 const check = () => {
   for (let i = 0; i < numInput.value.length; i++) {
@@ -146,7 +155,7 @@ const mouse = ref({
   down: false
 })
 
-const message = 'סכום שווה'
+const message = 'מצאו את שוויו של כל סימן מסימני ירושלים ופתרו את התרגילים'
 
 const currentMouse = () => {
   const c = document.getElementById('canvas')
@@ -158,14 +167,20 @@ const currentMouse = () => {
 }
 
 const draw = () => {
+  const c = document.getElementById('canvas')
+  const ctx = c.getContext('2d')
+
   if (mouse.value.down) {
-    const c = document.getElementById('canvas')
-    const ctx = c.getContext('2d')
-    ctx.clearRect(0, 0, 1400, 350) // עדכון גובה הקנבס
-    ctx.lineTo(currentMouse().x, currentMouse().y)
-    ctx.strokeStyle = 'black'
     ctx.lineWidth = 2
-    ctx.stroke()
+    ctx.strokeStyle = 'black'
+
+    if (isDrawing.value) {
+      ctx.lineTo(currentMouse().x, currentMouse().y)
+      ctx.stroke()
+    } else {
+      // אם isDrawing הוא false, נמחק מהאזור של העכבר
+      ctx.clearRect(currentMouse().x - 10, currentMouse().y - 10, 20, 20) // מחיקת אזור קטן
+    }
   }
 }
 
@@ -175,6 +190,7 @@ const handleMouseDown = (event) => {
 
   const c = document.getElementById('canvas')
   const ctx = c.getContext('2d')
+  ctx.beginPath() // התחל קו חדש
   ctx.moveTo(currentMouse().x, currentMouse().y)
 }
 

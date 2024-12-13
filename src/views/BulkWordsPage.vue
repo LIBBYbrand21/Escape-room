@@ -11,6 +11,6 @@ import NavBar from '@/components/NavBar.vue'
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 const route = useRoute()
-const message = 'להכנס בשעריך'
+const message = 'מצאו את כל המילים בתפזורת'
 const color = ref(Number(route.params.color))
 </script>

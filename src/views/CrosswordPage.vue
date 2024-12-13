@@ -30,7 +30,7 @@
           </div>
         </div>
         <!-- הוספת מקף בין הקבוצות -->
-        <span v-if="groupIndex < numbers1.length - 1">__</span>
+        <span v-if="groupIndex < numbers1.length - 1">_</span>
       </div>
     </div>
     <div class="d-flex number-input-2">
@@ -50,7 +50,7 @@
           </div>
         </div>
         <!-- הוספת מקף בין הקבוצות -->
-        <span v-if="groupIndex < numbers2.length - 1">__</span>
+        <span v-if="groupIndex < numbers2.length - 1">_</span>
       </div>
     </div>
   </v-container>
@@ -157,36 +157,35 @@ const check = () => {
   box-sizing: border-box;
   outline: 1px solid black;
   font-size: 20px;
-  background-color: #f6f4d2;
   display: flex;
 }
 
 .container {
   display: grid;
-  grid-template-columns: repeat(32, 30px);
-  grid-template-rows: repeat(24, 30px);
+  grid-template-columns: repeat(30, 30px);
+  grid-template-rows: repeat(20, 30px);
   box-sizing: border-box;
 }
 
 .list {
   grid-row: 1 / 20;
-  grid-column: 5 / 10;
+  grid-column: 1 / 7;
 }
 
 .crossword {
-  grid-row: 1 / 13;
-  grid-column: 12 / 29;
+  grid-row: 1 / 12;
+  grid-column: 9 / 27;
 }
 
 .number-input-1 {
-  grid-row: 16 / 18;
-  grid-column: 11 / 28;
+  grid-row: 15 / 17;
+  grid-column: 11 / 27;
   margin-bottom: 5px;
 }
 
 .number-input-2 {
-  grid-row: 19 / 21;
-  grid-column: 11 / 28;
+  grid-row: 18 / 20;
+  grid-column: 9 / 27;
   margin-bottom: 5px;
 }
 </style>

@@ -458,7 +458,7 @@
 }
 
 .item {
-  background-color: #e0d2ad;
+  background-color: #fdfdb6;
   display: flex;
 }
 

@@ -4,8 +4,7 @@ import { shallowMount } from '@vue/test-utils';
     <StartComp />
     <img
       src="@\assets\logo.png"
-      class="d-flex position-fixed"
-      style="width: 30%; bottom: 10px; /*filter: saturate(7)*/"
+      style="width: 20%; margin: 0 auto; right: 0; left: 0; /*filter: saturate(7)*/"
     />
     <router-view />
   </div>
@@ -25,7 +24,13 @@ console.log(import.meta)
   background-image: url('@/assets/background.png');
   background-size: cover;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  max-width: 960px !important;
+  position: relative;
+  margin: auto;
+  right: 0;
+  left: 0;
+  border-top: 15px solid #dda925;
+  padding: 15px;
+  padding-bottom: 30px;
 }
 </style>
